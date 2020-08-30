@@ -2,13 +2,11 @@
 using UnityEngine.UI;
 using System.Collections;
 
-
 public class SimpleTouchController : MonoBehaviour {
 
 	// PUBLIC
 	public delegate void TouchDelegate(Vector2 value);
 	public event TouchDelegate TouchEvent;
-
 	public delegate void TouchStateDelegate(bool touchPresent);
 	public event TouchStateDelegate TouchStateEvent;
 
@@ -18,12 +16,10 @@ public class SimpleTouchController : MonoBehaviour {
 	private bool touchPresent = false;
 	private Vector2 movementVector;
 
-
 	public Vector2 GetTouchPosition
 	{
 		get { return movementVector;}
 	}
-
 
 	public void BeginDrag()
 	{
@@ -36,10 +32,8 @@ public class SimpleTouchController : MonoBehaviour {
 	{
 		touchPresent = false;
 		movementVector = joystickArea.anchoredPosition = Vector2.zero;
-
 		if(TouchStateEvent != null)
 			TouchStateEvent(touchPresent);
-
 	}
 
 	public void OnValueChanged(Vector2 value)
@@ -55,7 +49,5 @@ public class SimpleTouchController : MonoBehaviour {
 				TouchEvent(movementVector);
 			}
 		}
-
 	}
-
 }
